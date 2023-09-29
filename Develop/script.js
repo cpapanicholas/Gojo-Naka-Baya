@@ -46,6 +46,18 @@
 
   updateHourClasses();
 
+  function loadSavedUserInput() {
+    $(".time-block").each(function () {
+      var timeBlockId = $(this).attr("id");
+      var savedUserInput = localStorage.getItem(timeBlockId);
+      if (savedUserInput !== null) {
+        $(this).find(".description").val(savedUserInput);
+      }
+    });
+  }
+
+  loadSavedUserInput();
+
   var currentDate = dayjs().format("MMMM D, YYYY");
   $("#currentDay").text(currentDate);
 
