@@ -21,8 +21,30 @@
   // TODO: Add code to display the current date in the header of the page.
 
   $(function () {
+    function updateHourClasses() {
+      var currentHour = dayjs().hour();
+
+      $(".time-block").each(function () {
+        var timeBlockHour = parseInt($(this).attr("id").split("-")[1]);
+
+        if (timeBlockHour < currentHour) {
+
+          $(this).removeClass("present future").addClass("past");
+        } else if (timeBlockHour === currentHour) {
+
+          $(this).removeClass("past future").addClass("present");
+        } else {
+
+          $(this).removeClass("past present").addClass("future");
+        }
+      });
+    }
+
+
   
   });
+
+  updateHourClasses();
 
   var currentDate = dayjs().format("MMMM D, YYYY");
   $("#currentDay").text(currentDate);
