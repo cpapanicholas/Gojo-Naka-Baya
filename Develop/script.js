@@ -58,6 +58,13 @@
 
   loadSavedUserInput();
 
+  function displayCurrentDate() {
+    var currentDate = dayjs().format("MMMM D, YYYY");
+    $("#currentDay").text(currentDate);
+  }
+
+  displayCurrentDate();
+
   var currentDate = dayjs().format("MMMM D, YYYY");
   $("#currentDay").text(currentDate);
 
