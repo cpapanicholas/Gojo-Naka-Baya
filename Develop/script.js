@@ -21,61 +21,53 @@
   // TODO: Add code to display the current date in the header of the page.
 
   $(function () {
+    // Function to update hour classes
     function updateHourClasses() {
       var currentHour = dayjs().hour();
-
+  
       $(".time-block").each(function () {
         var timeBlockHour = parseInt($(this).attr("id").split("-")[1]);
-
+  
         if (timeBlockHour < currentHour) {
-
           $(this).removeClass("present future").addClass("past");
         } else if (timeBlockHour === currentHour) {
-
           $(this).removeClass("past future").addClass("present");
         } else {
-
           $(this).removeClass("past present").addClass("future");
         }
       });
     }
-
-
   
-  });
-
-  updateHourClasses();
-
-  function loadSavedUserInput() {
-    $(".time-block").each(function () {
-      var timeBlockId = $(this).attr("id");
-      var savedUserInput = localStorage.getItem(timeBlockId);
-      if (savedUserInput !== null) {
-        $(this).find(".description").val(savedUserInput);
-      }
+    // Call the updateHourClasses function
+    updateHourClasses();
+  
+    // Function to load saved user input
+    function loadSavedUserInput() {
+      $(".time-block").each(function () {
+        var timeBlockId = $(this).attr("id");
+        var savedUserInput = localStorage.getItem(timeBlockId);
+        if (savedUserInput !== null) {
+          $(this).find(".description").val(savedUserInput);
+        }
+      });
+    }
+  
+    // Call the loadSavedUserInput function
+    loadSavedUserInput();
+  
+    // Function to display the current date
+    function displayCurrentDate() {
+      var currentDate = dayjs().format("MMMM D, YYYY");
+      $("#currentDay").text(currentDate);
+    }
+  
+    // Call the displayCurrentDate function
+    displayCurrentDate();
+  
+    // Event handler for save button clicks
+    $(".saveBtn").on("click", function () {
+      var userInput = $(this).siblings(".description").val();
+      var timeBlockId = $(this).parent().attr("id");
+      localStorage.setItem(timeBlockId, userInput);
     });
-  }
-
-  loadSavedUserInput();
-
-  function displayCurrentDate() {
-    var currentDate = dayjs().format("MMMM D, YYYY");
-    $("#currentDay").text(currentDate);
-  }
-
-  displayCurrentDate();
-
-  var currentDate = dayjs().format("MMMM D, YYYY");
-  $("#currentDay").text(currentDate);
-
-
-
-
-$(".saveBtn").on("click", function () {
-
-  var userInput = $(this).siblings(".description").val();
-
-  var timeBlockId = $(this).parent().attr("id");
-
-  localStorage.setItem(timeBlockId, userInput);
-});
+  });
