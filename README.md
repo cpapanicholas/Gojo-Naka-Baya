@@ -20,6 +20,7 @@ THEN the text for that event is saved in local storage
 WHEN I refresh the page
 THEN the saved events persist
 
-LINK:
+LINK: git@github.com:cpapanicholas/Gojo-Naka-Baya.git
 
-SS:
+SS: ![image](https://github.com/cpapanicholas/Gojo-Naka-Baya/assets/144556211/eadd7b76-7690-4fa6-ad71-4a94899d03d5)
+
